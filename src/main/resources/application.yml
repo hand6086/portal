@@ -1,0 +1,92 @@
+# 默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：  
+#   开发环境：java -jar my-spring-boot.jar --spring.profiles.active=dev
+spring:
+  profiles:  
+    active: dev
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    max-active: 20
+    max-idle: 8
+    min-idle: 8
+    initial-size: 10
+  mvc:
+    view:
+      prefix: /WEB-INF/
+      suffix: .jsp
+  redis:
+    host: 47.88.27.158
+    password: mayi123456
+    port: 6379
+    database: 1
+  devtools:
+    restart:
+      additional-paths: src/main/java
+      exclude: META-INF/resources/**
+      enabled: true
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  application:
+    name: mall
+
+server:
+  port: 8083
+  jsp-servlet:
+    init-parameters:
+      devlelopment: true
+  context-path: /portal
+
+#mybatis config
+mybatis:
+  typeAliasesPackage: com.hand.**.model
+  mapperLocations: com/hand/**/sqlMap/*MapperMySql.xml
+  config-location: mybatis-config.xml
+project:
+  build:
+    sourceEncoding: UTF-8
+multipart:
+  enabled: true
+  max-file-size: 5MB
+  max-request-size: 5MB
+application:
+  doc:
+    url: http://172.16.2.139
+  database: mysql
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://39.102.83.1:3306/demo?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: root
+    password: mayi123456
+  redis:
+    host: 47.88.27.158
+    password: mayi123456
+    port: 6379
+
+
+logging:
+  config: classpath:log4j2.xml
+  
+application:
+  static:
+    url: http://127.0.0.1:8082
+  doc:
+    url: http://172.16.2.139
+  uploadfile:
+    portal:
+      share: /app/share/portal
+      httpshare: http://47.105.146.145/share/portal
+    pic:
+      share: /app/share/pic
+      httpshare: http://47.105.146.145/share/pic
+  io:
+    temporary:
+      share: /app/share/io # 导出功能，生成的csv的存放路径
+      httpshare: http://47.105.146.145/share/io
+
+    
+
