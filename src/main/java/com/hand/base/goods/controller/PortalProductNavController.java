@@ -2,6 +2,7 @@ package com.hand.base.goods.controller;
 
 import com.hand.base.goods.model.Product;
 import com.hand.base.goods.model.ProductNav;
+import com.hand.base.goods.model.TopProductNav;
 import com.hand.base.goods.service.ProductNavService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,10 +33,14 @@ public class PortalProductNavController {
 	public Map<String, Object> queryAll(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		try{
+			TopProductNav provinceNav = new TopProductNav();
+			provinceNav.setId("1-7DSX1D");
+			provinceNav.setName("山东省");
 			List<ProductNav> list = productNavService.queryAll();
+			provinceNav.setChildren(list);
 			result.put("success", 1);
 			result.put("msg", "");
-			result.put("data", list);
+			result.put("data", provinceNav);
 		}catch(Exception e){
 			e.printStackTrace();
 			result.put("success", 0);
