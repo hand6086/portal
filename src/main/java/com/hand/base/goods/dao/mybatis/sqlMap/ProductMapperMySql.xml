@@ -56,6 +56,7 @@
 		<if test="productName != null and productName != '' ">
 			and T.product_name = #{productName}
 		</if>
+		order by T.row_id asc, t2.seq asc
 		limit #{startRows}, #{endRowS}
 	</select>
 
